@@ -12,6 +12,9 @@ public class Main {
         String inString;
         List<Integer> scores = new ArrayList<Integer>();
         Scanner reader = new Scanner(System.in);
+
+        int playerCount = 1;
+
         if (args.length > 0 && args[0] != null) {
             filename = args[0];
 
@@ -29,12 +32,18 @@ public class Main {
                 scores.add(Integer.parseInt(score));
 
             }
+//            System.out.println(scores);
+            if (!scores.isEmpty()) {
+                playerCount = scores.get(0);
+                scores.remove(0);
+            }
+//            System.out.println(scores);
 
         } catch (Exception e) {
             System.out.println("Failed to open file with error: "+e);
 
         }
-        BlackBoard blackboard = new BlackBoard(scores);
+        BlackBoard blackboard = new BlackBoard(scores, playerCount);
         while (!fetched) {
             fetched = blackboard.fetch();
 
